@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+    {% block body %}
+    <div class="main">
+    	<form>
+    		<input type="button" class = 'buttons' value="Try Again" onclick = "document.location.href='/game'">
+    			WINNER!!
+    			<p> You rank number {{ rank }} </p>
+    			<p><pre>{{ table }}</pre></p>
+       	</form>
+    </div>
+    {% endblock %}

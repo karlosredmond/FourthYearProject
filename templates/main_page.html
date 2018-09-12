@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+    {% block thebody %}
+
+        <!-- ###################   Display Latest Image In database   ###################-->
+
+        <center><div class="container">
+            {% if comments %}
+            <img id="latest_image" src = {{ comments.filename }} width="320px" height="160px">
+            <table style="width:320px;"  >
+  		        <tr class="row">
+    		        <th>PiName</th>
+    		        <th>Date</th>
+    		        <th>Time</th>
+  		        </tr>
+                <tr class="row">
+                    <td id="latest_comment">{{ comments.pi_location }}</td>
+                    <td id="latest_date">{{ comments.date }}</TD>
+                    <td id="latest_time">{{ comments.time }}</TD>
+                </tr>
+            </table>
+            {% endif %}
+        </div>
+
+        <!-- ##################   End of Display Latest Image    #######################-->
+
+        <br/>
+
+        <!-- ##################   Arm and Disarm System, Enable/Disable Notifications, sends ajax to raspberry pi endpoint   ######-->
+
+        <div class = "container">
+            <p style="color:blue; margin-left:0px;">System <span style="margin-left:80px;"></span>Notifications</p>
+            <input id="arm-event" type="checkbox" checked data-toggle="toggle" data-on="Armed" data-off="Disarmed" data-onstyle="success" data-offstyle="danger">
+            <script>
+                $(function() {
+                    $('#arm-event').change(function() {
+                        var data = ""+$(this).prop('checked')
+                        $.ajax({
+                            type: "POST",
+                            url: "https://karlredmond.pythonanywhere.com/arm_system",
+                            data: data,
+                            success: function(result) {
+                                //alert('ok');
+                            },
+                            error: function(result) {
+                                alert('error');
+                            }
+                        });
+                    });
+                    })
+            </script>
+            <span style="margin-left:50px;"><input id="notification-event" type="checkbox" checked data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-onstyle="success" data-offstyle="danger">
+            </span>
+            <script>
+                $(function() {
+                    $('#notification-event').change(function() {
+                        var data = ""+$(this).prop('checked')
+                        $.ajax({
+                            type: "POST",
+                            url: "https://karlredmond.pythonanywhere.com/notifications",
+                            data: data,
+                            success: function(result) {
+                                //alert('ok');
+                            },
+                            error: function(result) {
+                                alert('error');
+                            }
+                        });
+                    });
+                    })
+            </script>
+
+            <!--###############################   End of Arm/Disarm   ##############-->
+
+            <br/>
+            <br/>
+
+            <!--##########################    Play Audio Files   ##############-->
+            <p style="color:blue; align:center;">Audio Messages</p>
+            <table style="width:320px;"  >
+                <!--########### Call Me #########-->
+  		        <tr class="row">
+                    <td id="call_me_message">Call me</td>
+                    <td id="play_file_call_me"><audio controls style="width:100px;">
+                                                    <source src="/static/VoiceMessages/CallMe.wav" type="audio/x-wav">
+                                                </audio>
+                    </td>
+                    <td><button id="CallMe" onclick="sendMessage('CallMe')">Send</button></td>
+                </tr>
+                <!--########### End Call Me #######-->
+                <!--########### Delivery #########-->
+  		        <tr class="row">
+                    <td id="delivery_message">Delivery</td>
+                    <td id="play_file_delivery"><audio controls style="width:100px;">
+                                                    <source src="/static/VoiceMessages/Delivery.wav" type="audio/x-wav">
+                                                </audio>
+                    </td>
+                    <td><button id="Delivery" onclick="sendMessage('Delivery')">Send</button></td>
+                </tr>
+                <!--########### End Delivery #######-->
+                <!--###########  Key #########-->
+  		        <tr class="row">
+                    <td id="key_message">Key</td>
+                    <td id="play_file_key"><audio controls style="width:100px;">
+                                                    <source src="/static/VoiceMessages/Key.wav" type="audio/x-wav">
+                                                </audio>
+                    </td>
+                    <td><button id="Key" onclick="sendMessage('Key')">Send</button></td>
+                </tr>
+                <!--########### End Key #######-->
+                <!--########### Leave #########-->
+  		        <tr class="row">
+                    <td id="leave_message">Leave</td>
+                    <td id="play_file_leave"><audio controls style="width:100px;">
+                                                    <source src="/static/VoiceMessages/Leave.wav" type="audio/x-wav">
+                                                </audio>
+                    </td>
+                    <td><button id="Leave" onclick="sendMessage('Leave')">Send</button></td>
+                </tr>
+                <!--########### End Leave #######-->
+                <!--########### Police #########-->
+  		        <tr class="row">
+                    <td id="police_message">Police</td>
+                    <td id="play_file_police"><audio controls style="width:100px;">
+                                                    <source src="/static/VoiceMessages/Police.wav" type="audio/x-wav">
+                                                </audio>
+                    </td>
+                    <td><button id="Police" onclick="sendMessage('Police')">Send</button></td>
+                </tr>
+                <!--########### End Police #######-->
+                <!--########### Release The Hounds #########-->
+  		        <tr class="row">
+                    <td id="release_the_hounds_message">Release the Hounds</td>
+                    <td id="play_file_release_the_hounds"><audio controls style="width:100px;">
+                                                    <source src="/static/VoiceMessages/ReleaseTheHounds.wav" type="audio/x-wav">
+                                                </audio>
+                    </td>
+                    <td><button id="releaseTheHounds" onclick="sendMessage('ReleaseTheHounds')">Send</button></td>
+                </tr>
+                <!--########### End release the Hounds #######-->
+                <!--########### Custom #########-->
+  		        <tr class="row">
+                    <td>Custom</td>
+                    <td><button id="start-btn">Record</button></td>
+                    <td><button id="stop-btn" disabled>Send</button></td>
+                </tr>
+                <!--########### End Custom #######-->
+            </table>
+            <br/>
+
+            <!--###############################   End of Play Audio Files   ##############-->
+
+            <!--###############################   Turn On/Off Light, Release/Lock Dog Cage  ##############-->
+
+            <p style="color:blue; margin-left:-25px;">Light <span style="margin-left:130px;"></span>Dogs</p>
+            <input id="light-event" type="checkbox" checked data-toggle="toggle" data-on="Off" data-off="On" data-onstyle="success" data-offstyle="danger">
+            <script>
+                $(function() {
+                    $('#light-event').change(function() {
+                        var data = ""+$(this).prop('checked')
+                        $.ajax({
+                            type: "POST",
+                            url: "https://karlredmond.pythonanywhere.com/light",
+                            data: data,
+                            success: function(result) {
+                                //alert('ok');
+                            },
+                            error: function(result) {
+                                alert('error');
+                            }
+                        });
+                    });
+                    })
+            </script>
+            <span style="margin-left:80px;"><input id="dog-event" type="checkbox" checked data-toggle="toggle" data-on="Locked" data-off="Released" data-onstyle="success" data-offstyle="danger">
+            </span>
+            <script>
+                $(function() {
+                    $('#dog-event').change(function() {
+                        var data = ""+$(this).prop('checked')
+                        $.ajax({
+                            type: "POST",
+                            url: "https://karlredmond.pythonanywhere.com/release",
+                            data: data,
+                            success: function(result) {
+                                //alert('ok');
+                            },
+                            error: function(result) {
+                                alert('error');
+                            }
+                        });
+                    });
+                    })
+            </script>
+        </div></center>
+
+        <!--###############################   End of Light control & Dog Cage control   ##############-->
+    {% endblock %}

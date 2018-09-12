@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+    {% block thebody %}
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/w3.css') }}">
+    </head>
+
+        <!--IP camera Could be embedded here
+            <iframe class="container" width="50%" height="50%"
+            src="http://karlredmond.gotdns.com:3333">
+        </iframe>
+        <button id="start-btn">Start recording</button>
+        <button id="stop-btn" disabled>Stop recording</button>
+        -->
+        <div class="w3-content w3-display-container">
+            {% if comments %}
+                {% for comment in comments | reverse %}
+                    <div class="w3-display-container mySlides">
+                        <img src= {{ comment.filename }} style="width:100%">
+                        <div class="w3-display-bottomleft w3-small w3-container w3-padding-16 w3-black">
+                            {{ comment.pi_location }} {{ comment.date }} {{ comment.time }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+        </div>
+        <script>
+            var slideIndex = 1;
+            showDivs(slideIndex);
+
+            function plusDivs(n) {
+                showDivs(slideIndex += n);
+            }
+            //Allows users to scroll through images
+            function showDivs(n) {
+                var i;
+                var x = document.getElementsByClassName("mySlides");
+                if (n > x.length) {slideIndex = 1}
+                if (n < 1) {slideIndex = x.length}
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                x[slideIndex-1].style.display = "block";
+            }
+        </script>
+    {% endblock %}

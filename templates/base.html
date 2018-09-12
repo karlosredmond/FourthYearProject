@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--XMLHTTP requests-->
+        <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+        <!--Toggles for System Status -->
+        <script src="{{ url_for('static',filename='js/bootstrap-toggle.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/my_scripts.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/recorder.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/ajax_stuff.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+        <!--<link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">-->
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
+        <link href="{{ url_for('static',filename='css/bootstrap-toggle.min.css') }}" rel="stylesheet">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/myStyle.css') }}">
+        <title>Home SecuriPi</title>
+    </head>
+
+    <body>
+         <nav class = "navbar navbar-inverse">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#icons">
+                    <span class="sr-only">toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Home SecuriPi</a>
+            </div>
+            <div class="collapse navbar-collapse" id="icons">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/history">History</a></li>
+                </ul>
+            </div>
+        </nav>
+        {% block thebody %}
+        {% endblock %}
+    </body>
+</html>

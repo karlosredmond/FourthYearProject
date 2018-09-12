@@ -1,0 +1,13 @@
+
+form{/*style of the form*/
+	padding:10px;
+	height:auto;
+	font-size: 21px;
+	font-weight: bold ;
+	border: radial	;
+}
+.divK{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}

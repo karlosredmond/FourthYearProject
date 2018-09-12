@@ -1,0 +1,103 @@
+<html>
+    <head>
+    	<style>
+    		
+			label{
+				display:inline-block;
+				color:white;
+				width: 100px;
+			}
+			.main{
+    			position: relative;
+    			padding: 20px;
+    			top: 90px;
+    			width: auto;
+    			max-width: 350px;
+				height:auto ;
+    			min-height: 200px;
+    			margin: auto;
+    			background: white;
+				opacity:0.9;
+    			border:solid 1px #cacaca; /*grey*/
+ 				border-radius:10px ;
+    			overflow: auto;
+    		}
+    		
+    		h2{
+    			font: 20px  'Josefin Sans', sans-serif;
+    			opacity:0.7;
+    			text-align:center ;
+    		}
+    		
+			input[type = text]{
+				position:relative;
+				padding-left:25px;
+				padding-top:3px;
+				padding-bottom:3px;
+				width:auto;
+				opacity:0.7;
+				left:-5px;
+			}
+			
+			input[type=submit]{  /*set all input types of type date to the following*/ 
+				margin-left:125px;
+    			position: absolute;
+    			left: 40px;
+    			bottom:5px;
+				color:black; /*grey*/
+				background-color: white ; /* black*/
+				font: 10px  'Josefin Sans', sans-serif;
+				border: solid #cacaca 2px; /*grey*/
+				font-weight:bold;
+				box-shadow:#cacaca 2px 2px 10px; /*grey*/
+				width:auto;
+    			height: 36px;
+    		}
+    		
+    		.buttons{
+    			margin-left:125px;
+    			position: absolute;
+    			left: 40px;
+    			bottom:5px;
+				color:black; /*grey*/
+				background-color: white ; /* black*/
+				font: 10px  'Josefin Sans', sans-serif;
+				border: solid #cacaca 2px; /*grey*/
+				font-weight:bold;
+				box-shadow:#cacaca 2px 2px 10px; /*grey*/
+				width:auto;
+    			height: 36px;
+    		}
+    		
+    		.sourceWord{
+    			position:relative;
+    			border:none;
+    			font-size:15px;
+    			font-weight:bold;
+    			background-color:white;
+    			width:100px;
+    			margin-left:25px;
+    		}
+    		
+    		hr{
+    			margin-top:200px;
+    		}
+    		
+    		body{
+    			background: -webkit-linear-gradient(left top,#2BC0E4,#EAECC6);
+			}
+
+}
+</style>
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        {% block body %}
+
+
+        {% endblock %}
+        <hr>
+        Copyright 2016 (c) by Karl Redmond.
+        </hr>
+    </body>
+</html>
