@@ -6,8 +6,8 @@
 
 from twilio.rest import Client
 
-account_sid = "AC0192978da4c454938b9f0cd97a0a675a"
-auth_token = "cae865e31a8bbba6769bb725da7a0f10"
-# Live Credentials account_sid = "ACc5f0347054e7b0d8ce2af0cf198b5a38"
-# Live Credentials auth_token = "d06e040847125ab35fff6cd205292825"
+account_sid = ""
+auth_token = ""
+# Live Credentials account_sid = ""
+# Live Credentials auth_token = ""
 client = Client(account_sid, auth_token)
